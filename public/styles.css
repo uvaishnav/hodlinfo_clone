@@ -12,6 +12,32 @@ body {
     padding: 20px;
 }
 
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-nav .logo h1 {
+    font-size: 40px;
+    color: #48a9a6;
+}
+
+.top-nav .telegram button{
+    background-color: #48a9a6;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.percentage-change p{
+    font-size: larger;
+}
+
+
 .header {
     display: flex;
     justify-content: space-around;
@@ -23,6 +49,12 @@ body {
 .header .percentage-change {
     font-size: 14px;
     color: #48a9a6;
+    margin-left: 20px;
+}
+
+.top-change, .bottom-change{
+    display: flex;
+    flex-direction: row;
 }
 
 .header .best-price {
@@ -31,7 +63,12 @@ body {
 
 .header .best-price h1 {
     margin: 0;
-    font-size: 36px;
+    font-size: 50px;
+}
+
+.best-price p{
+    color: grey;
+    font-size: larger;
 }
 
 .crypto-table {
@@ -68,4 +105,35 @@ body {
 
 .negative {
     color: #dc3545;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .top-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .header .top-change{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header .bottom-change{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    /* .header {
+        flex-direction: column;
+        width: 100vw;
+    } */
+
+    .header .percentage-change,
+    .header .best-price {
+        margin-bottom: 10px;
+    }
 }

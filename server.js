@@ -17,10 +17,12 @@ const client = new Client({
     port: 5432,
 });
 
+// Connect to PostgreSQL database
 client.connect()
     .then(() => console.log('Connected to PostgreSQL database'))
     .catch(err => console.error('Connection error', err.stack));
 
+// Function to update database schema if needed
 async function updateDatabaseSchema() {
     try {
         await client.query(`
@@ -34,15 +36,22 @@ async function updateDatabaseSchema() {
     }
 }
 
+// Function to fetch data from API and store it in the database
 async function fetchDataAndStore() {
     try {
-        await updateDatabaseSchema(); // Ensure schema is updated
+        // Ensure schema is updated
+        await updateDatabaseSchema(); 
 
+        // Fetch data from the API
         const response = await axios.get('https://api.wazirx.com/api/v2/tickers');
         const data = response.data;
 
-        const top10 = Object.values(data).slice(0, 10);
+        // Get the top 10 cryptocurrencies based on volume
+        const top10 = Object.values(data)
+            .sort((a, b) => b.last - a.last)
+            .slice(0, 10);
 
+        // Create the table if it does not exist
         await client.query(`
             CREATE TABLE IF NOT EXISTS crypto_data (
                 id SERIAL PRIMARY KEY,
@@ -57,8 +66,10 @@ async function fetchDataAndStore() {
             )
         `);
 
+        // Clear previous data
         await client.query('DELETE FROM crypto_data');
 
+        // Insert new data
         for (const item of top10) {
             const difference = ((item.sell - item.buy) / item.buy * 100).toFixed(2);
             const savings = (item.sell - item.buy).toFixed(2);
@@ -74,10 +85,13 @@ async function fetchDataAndStore() {
     }
 }
 
+// Initial data fetch
 fetchDataAndStore();
 
+// Serve static files from the 'public' directory
 app.use(express.static('public'));
 
+// Endpoint to get data from the database
 app.get('/data', async (req, res) => {
     try {
         const result = await client.query('SELECT * FROM crypto_data');
@@ -88,10 +102,12 @@ app.get('/data', async (req, res) => {
     }
 });
 
+// Serve the main HTML file
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
