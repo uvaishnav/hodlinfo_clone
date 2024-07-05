@@ -98,6 +98,4 @@ The CSS file provides styling rules to enhance the visual appeal and usability o
 
 This project aims to provide a robust, scalable solution for displaying real-time cryptocurrency data through an intuitive web interface. By leveraging Node.js, Express.js, PostgreSQL, and client-side technologies, it ensures efficient data management and a responsive user experience.
 
----
 
-Feel free to adjust and expand upon each section to better fit your project's specific requirements and technical details.
