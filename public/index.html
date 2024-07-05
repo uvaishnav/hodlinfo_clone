@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HodlInfo Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="percentage-change">
+                <p id="change-5mins">0.08 %</p>
+                <p>5 Mins</p>
+            </div>
+            <div class="percentage-change">
+                <p id="change-1hour">0.31 %</p>
+                <p>1 Hour</p>
+            </div>
+            <div class="best-price">
+                <h1 id="best-price">₹ 51,14,039</h1>
+                <p>Best Price to Trade</p>
+                <p>Average BTC/INR net price including commission</p>
+            </div>
+            <div class="percentage-change">
+                <p id="change-1day">9.43 %</p>
+                <p>1 Day</p>
+            </div>
+            <div class="percentage-change">
+                <p id="change-7days">11.65 %</p>
+                <p>7 Days</p>
+            </div>
+        </div>
+        <table class="crypto-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Last Traded Price</th>
+                    <th>Buy / Sell Price</th>
+                    <th>Volume</th>
+                    <th>Difference</th>
+                    <th>Savings</th>
+                </tr>
+            </thead>
+            <tbody id="crypto-data">
+                <!-- Data will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
